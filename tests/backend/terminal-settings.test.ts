@@ -43,10 +43,30 @@ describe("resolveTerminalSettings", () => {
     expect(resolved.linkClickBehavior).toBe("confirm");
   });
 
+  it("closes the tab on exit unless the host keeps it open", () => {
+    expect(DEFAULT_HOST_TERMINAL_SETTINGS.keepOpenOnExit).toBe(false);
+    expect(hostSettingsFromTerminalConfig({ keepOpenOnExit: true })).toEqual({
+      keepOpenOnExit: true,
+    });
+  });
+
   it("falls back to the built-in defaults", () => {
     expect(resolveTerminalSettings(null).theme).toBe(
       DEFAULT_HOST_TERMINAL_SETTINGS.theme,
     );
+  });
+
+  it("drops placeholder objects like { set: true } for cloudflareTunnelClientSecret and preserves strings", () => {
+    expect(
+      readHostTerminalSettings({
+        cloudflareTunnelClientSecret: { set: true },
+      }).cloudflareTunnelClientSecret,
+    ).toBe("");
+    expect(
+      readHostTerminalSettings({
+        cloudflareTunnelClientSecret: "actual-secret",
+      }).cloudflareTunnelClientSecret,
+    ).toBe("actual-secret");
   });
 });
 
