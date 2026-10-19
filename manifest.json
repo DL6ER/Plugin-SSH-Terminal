@@ -1,7 +1,7 @@
 {
   "id": "ssh-terminal",
   "name": "SSH Terminal",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "SSH terminal sessions with tabs, split screen, history, macros and a local terminal in the desktop app.",
   "author": {
     "name": "Termix"
@@ -57,8 +57,8 @@
     }
   ],
   "engine": {
-    "termix": ">=26.10.0",
-    "api": "^1.2"
+    "termix": ">=26.10.3",
+    "api": "^1.5"
   },
   "capabilities": [
     "hosts:read",
@@ -68,7 +68,8 @@
     "network:serve",
     "db:own",
     "events:core",
-    "ui:surface"
+    "ui:surface",
+    "desktop:local"
   ],
   "provides": [
     {

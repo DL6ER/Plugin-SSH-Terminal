@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0
+
+### Changed
+
+- The local terminal now runs in the plugin instead of the desktop app, so fixes to it no longer need a new desktop build
+- Needs Termix 26.10.3 or newer
+
 ## 1.0.3
 
 ### Added
