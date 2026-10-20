@@ -3,6 +3,7 @@ import {
   isPasswordPrompt,
   isSudoCommand,
   isSudoPrompt,
+  stripAnsi,
 } from "../../../src/frontend/terminal/password-prompt";
 
 describe("isPasswordPrompt", () => {
@@ -43,5 +44,20 @@ describe("isSudoCommand", () => {
     expect(isSudoCommand("ls; sudo reboot")).toBe(true);
     expect(isSudoCommand("sudoedit file")).toBe(false);
     expect(isSudoCommand("visudo")).toBe(false);
+  });
+});
+
+describe("stripAnsi", () => {
+  it("lets a colored sudo prompt end in a password prompt", () => {
+    const esc = String.fromCharCode(27);
+    const prompt = `${esc}[1m[sudo] password for me: ${esc}(B${esc}[m`;
+    expect(isPasswordPrompt(prompt)).toBe(false);
+    expect(isPasswordPrompt(stripAnsi(prompt))).toBe(true);
+  });
+
+  it("drops window title sequences", () => {
+    const esc = String.fromCharCode(27);
+    const bel = String.fromCharCode(7);
+    expect(stripAnsi(`${esc}]0;title${bel}Password: `)).toBe("Password: ");
   });
 });

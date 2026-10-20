@@ -50,6 +50,7 @@ import { useCommandTracker } from "./command-history/useCommandTracker";
 import {
   isPasswordPrompt as endsInPasswordPrompt,
   isSudoPrompt as isSudoPromptOutput,
+  stripAnsi,
 } from "./password-prompt";
 import {
   highlightTerminalOutput,
@@ -1938,10 +1939,7 @@ const TerminalInner = forwardRef<TerminalHandle, SSHTerminalProps>(
               scheduleAutosuggestionUpdate();
               // Strip ANSI escape codes before testing, newer sudo versions (Ubuntu 26.04+)
               // emit colored prompts with embedded escape sequences that break the regex.
-              const strippedData = msg.data.replace(
-                /\x1b(?:[@-Z\\-_]|\[[0-9:;<=>?!]*[@-~])/g,
-                "",
-              );
+              const strippedData = stripAnsi(msg.data);
               outputTailRef.current = (
                 outputTailRef.current + strippedData
               ).slice(-200);
