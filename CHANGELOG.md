@@ -2,6 +2,11 @@
 
 ## 1.1.0
 
+### Added
+
+- Panels from other plugins can read the terminal's current folder, which the files panel uses to stay in sync
+- The terminal finds its current folder from /proc, so it works on hosts with a minimal ps such as busybox
+
 ### Changed
 
 - The local terminal now runs in the plugin instead of the desktop app, so fixes to it no longer need a new desktop build
