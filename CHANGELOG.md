@@ -8,6 +8,10 @@
 - The terminal finds its current folder from /proc, so it works on hosts with a minimal ps such as busybox
 - A Clear console keybinding action wipes the screen and scrollback without sending anything to the shell
 
+### Fixed
+
+- The sudo password prompt is found on hosts whose prompt ends in a color reset or a window title
+
 ### Changed
 
 - The local terminal now runs in the plugin instead of the desktop app, so fixes to it no longer need a new desktop build
