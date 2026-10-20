@@ -6,6 +6,7 @@
 
 - Panels from other plugins can read the terminal's current folder, which the files panel uses to stay in sync
 - The terminal finds its current folder from /proc, so it works on hosts with a minimal ps such as busybox
+- A Clear console keybinding action wipes the screen and scrollback without sending anything to the shell
 
 ### Changed
 
