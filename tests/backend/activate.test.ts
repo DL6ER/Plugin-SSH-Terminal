@@ -29,6 +29,7 @@ describe("ssh-terminal activate", () => {
     server = await startServer();
     expect(server.mock.wsRoutes).toMatchObject([
       { path: "/terminal", raw: false },
+      { path: "/local-terminal", raw: false },
     ]);
   });
 
